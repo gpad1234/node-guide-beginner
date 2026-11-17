@@ -76,6 +76,32 @@ For a new project with no notes, you should see `Added note 1`, followed by
 the following arguments to the program. The note is saved in `notes.json` in
 the current directory, so it remains there between commands.
 
+`notes.json` does not exist until you add your first note. Look at it now:
+
+```sh
+cat notes.json
+```
+
+You should see a JSON array with one note, like this (your `createdAt` will
+differ):
+
+```json
+[
+  {
+    "id": 1,
+    "text": "Learn Node.js",
+    "done": false,
+    "createdAt": "2026-01-01T12:00:00.000Z"
+  }
+]
+```
+
+This file is your notes database. `add` reads it, appends a note, and writes it
+back. The file is created in the folder where you run the command, so run
+commands from `projects/01-notes-cli`. To store it elsewhere, set
+`NOTES_FILE=/path/to/notes.json`. The project's `.gitignore` excludes it, so
+your notes are not committed.
+
 Check that the starter code compiles and run the test command:
 
 ```sh
