@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#101419">
+    <title>Node IPC Guide</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="Node IPC Guide home">
+          <span class="brand-mark" aria-hidden="true">↔</span>
+          <span>node<span class="brand-accent">/</span>ipc guide</span>
+        </a>
+        <div class="topbar-note"><span class="status-dot"></span> Local learning environment</div>
+      </header>
+
+      <main>
+        <section class="intro">
+          <p class="eyebrow">LEARN BY RUNNING</p>
+          <h1>Processes talking,<br><span>made visible.</span></h1>
+          <p class="intro-copy">Explore Node.js inter-process communication with runnable examples, from a first request/reply to validation, progress events, and broadcasting to multiple clients. Choose a lesson, run it, and follow each message.</p>
+        </section>
+
+        <section class="workspace" aria-label="Interactive tutorial">
+          <aside class="lesson-panel">
+            <div class="panel-label">YOUR LESSONS <span id="lesson-count">02</span></div>
+            <nav id="lesson-list" class="lesson-list" aria-label="Lessons"></nav>
+            <div class="sidebar-tip">
+              <span class="tip-icon" aria-hidden="true">i</span>
+              <p>These demos only communicate between processes on this computer.</p>
+            </div>
+          </aside>
+
+          <section class="lesson-content">
+            <div class="lesson-heading">
+              <div>
+                <p class="eyebrow" id="lesson-transport">LESSON 01 · LOCAL SOCKET</p>
+                <h2 id="lesson-title">Loading lessons…</h2>
+                <p id="lesson-description" class="lesson-description"></p>
+              </div>
+              <button id="run-button" class="run-button" type="button" disabled>
+                <span aria-hidden="true">▶</span> Run example
+              </button>
+            </div>
+
+            <div class="lesson-columns">
+              <section class="code-card" aria-label="Example source code">
+                <div class="card-header">
+                  <div class="window-dots" aria-hidden="true"><i></i><i></i><i></i></div>
+                  <span id="source-name">examples/local-socket.js</span>
+                  <span class="language-tag">JAVASCRIPT</span>
+                </div>
+                <pre><code id="source-code">Loading source…</code></pre>
+              </section>
+
+              <div class="right-column">
+                <section class="terminal-card" aria-label="Example output">
+                  <div class="card-header">
+                    <span class="terminal-icon" aria-hidden="true">›_</span>
+                    <span>RUN OUTPUT</span>
+                    <span id="run-status" class="run-status">READY</span>
+                  </div>
+                  <pre id="output" aria-live="polite">Choose a lesson and run the example to see the client and server communicate.</pre>
+                </section>
+
+                <section class="learn-card">
+                  <div class="learn-title"><span aria-hidden="true">✳</span> What to notice</div>
+                  <ul id="concept-list"></ul>
+                </section>
+              </div>
+            </div>
+            <div id="error-message" class="error-message" role="alert" hidden></div>
+          </section>
+        </section>
+
+        <section class="reference" aria-labelledby="reference-title">
+          <div class="reference-heading">
+            <p class="eyebrow">A LITTLE CONTEXT</p>
+            <h2 id="reference-title">The IPC field guide</h2>
+            <p>Use these basics to connect the runnable demos to your own Node.js processes.</p>
+          </div>
+          <div class="reference-grid">
+            <article class="reference-card">
+              <span class="reference-index">01 / MESSAGE FLOW</span>
+              <h3>Connect, emit, respond</h3>
+              <p>The server starts listening. The client waits for <code>connect</code>, emits a named event with data, and listens for the server's response event.</p>
+              <div class="flow-line"><span>client</span><b>app.message →</b><b>← app.reply</b><span>server</span></div>
+            </article>
+            <article class="reference-card">
+              <span class="reference-index">02 / DESIGN A PROTOCOL</span>
+              <h3>Name events and shape payloads</h3>
+              <p>Use stable, namespaced event names such as <code>math.add</code> and document each payload. Include a request ID when responses need to be correlated, and validate data before acting on it.</p>
+            </article>
+            <article class="reference-card">
+              <span class="reference-index">03 / CHOOSE A TRANSPORT</span>
+              <h3>Same machine or network?</h3>
+              <p>Choose a local socket when both processes live on one host. Choose TCP for reliable, ordered communication over IP. Use UDP only when your application can tolerate missing or reordered datagrams.</p>
+            </article>
+            <article class="reference-card">
+              <span class="reference-index">04 / HANDLE LIFECYCLE</span>
+              <h3>Plan for disconnects and timeouts</h3>
+              <p>Connections can close and requests can take too long. Listen for disconnects, set a timeout for expected replies, and decide whether the caller should retry, fail, or reconnect.</p>
+            </article>
+            <article class="reference-card">
+              <span class="reference-index">05 / MORE THAN ONE CLIENT</span>
+              <h3>Choose emit or broadcast</h3>
+              <p>Send to one client when its socket is known; broadcast only when every connected client should receive the event. Consider whether new clients need an initial snapshot.</p>
+            </article>
+            <article class="reference-card">
+              <span class="reference-index">06 / PACKAGE SETUP</span>
+              <h3>Use the maintained package</h3>
+              <p>Install the scoped package and import its default IPC instance. Older tutorials may refer to a different package name.</p>
+              <pre><code>npm install @node-ipc/node-ipc</code></pre>
+            </article>
+          </div>
+          <a class="docs-link" href="https://github.com/node-ipc/node-ipc" target="_blank" rel="noreferrer">Read the package documentation <span aria-hidden="true">↗</span></a>
+        </section>
+      </main>
+
+      <footer>
+        <span>Built for learning · Runs on your machine</span>
+        <a href="https://github.com/node-ipc/node-ipc" target="_blank" rel="noreferrer">Explore node-ipc on GitHub ↗</a>
+      </footer>
+    </div>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>
