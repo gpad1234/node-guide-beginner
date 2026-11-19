@@ -199,6 +199,9 @@ notes.json
 
 **Concepts:** `process.argv`, `node:fs/promises`, `node:path`, `node:url`, typed data, error handling, exit codes.
 
+See the [Notes CLI design](./projects/01-notes-cli/DESIGN.md) for the command
+contract, data format, error behavior, and completion criteria.
+
 ### Scaffold
 
 ```text
@@ -628,6 +631,9 @@ export function notesRepo(db: Database.Database) {
 **Goal:** An in-process job queue that runs async jobs with concurrency limits, emits typed events, and shuts down gracefully.
 
 **Concepts:** `EventEmitter` with TypeScript types, timers, `AbortController`, process signals, promise concurrency control.
+
+See the [Job Queue design](./projects/06-job-queue/DESIGN.md) for the queue
+contract, lifecycle, cancellation and retry behavior, and test criteria.
 
 ### Scaffold
 
